@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 60%;
+  --background-color: #F0EBF8;
+  --primary-color: #6122cc;
+  --primary-dark: #471f8d;
+  --banner-color: #683db3e8;
+  --background-input: rgba(252, 248, 248, 0.699);
+  
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--background-color);
+}
+
+.registrationForm {
+  font-family: 'Archivo', sans-serif;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rem;
+  padding-bottom: 10rem;
+  z-index: 1;
+  width: 650px;
+}
+
+.background {
+  background-color: var(--banner-color);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 20rem;
+}
+
+.container-block:not(.buttons) {
+  background-color: white;
+  border-radius: 0.8rem;
+  padding: 2rem;
+  font-size: 1.8rem;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.container-block:first-child {
+  border-top: 8px solid var(--primary-color);
+}
+
+.container-block:not(.title) {
+  margin-top: 2rem;
+}
+
+.container-block > h1 {
+  margin-bottom: 2rem;
+}
+
+.container-block label {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-block label [type="date"],
+.container-block label select {
+  width: 20rem;
+  cursor: pointer;
+}
+
+.registrationForm  #date,
+.registrationForm select {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--background-color);
+  height: 3.5rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  font-size: 1.6rem;
+  background-color: var(--background-input);
+}
+
+
+.registrationForm #photo {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  height: 3.5rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+
+.registrationForm [type="text"],
+.registrationForm [type="password"] {
+  width: 100%;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  height: 1rem;
+  border: none;
+  padding: 2rem;
+  font-size: 1.6rem;
+  background-color: var(--background-input);
+  transition: border 0.2s;
+}
+
+.registrationForm [type="text"]:focus,
+.registrationForm [type="password"]:focus {
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.registrationForm textarea {
+  width: 100%;
+  margin-top: 2.5rem;
+  font-family: 'Archivo', sans-serif;
+  margin-bottom: 1rem;
+  border: none;
+  resize: vertical;
+  height: 12rem;
+  padding: 2rem;
+  font-size: 1.6rem;
+  background-color: var(--background-input);
+  transition: border 0.2s;
+}
+
+.registrationForm textarea:focus {
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.container-block label div:first-child {
+  margin-top: 2.5rem;
+}
+
+.container-block label div {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.registrationForm [type="radio"],
+.registrationForm [type="checkbox"],
+.registrationForm option {
+  cursor: pointer;
+}
+
+.registrationForm option:hover {
+  background-color: var(--primary-color);
+}
+
+.buttons {
+  padding: 2rem 0;
+}
+
+.btn {
+  padding: 1.2rem;
+  width: 10rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn:first-child {
+  margin-right: 2rem;
+}
+
+.container-block label div input {
+  margin-right: 1rem;
+}
+
+small {
+  color: red;
+}
+
+/* RESPONSIVE MODE */
+
+@media(max-width: 700px) {
+  :root {
+    font-size: 50%;
+  }
+  .registrationForm {
+    width: 90%;
+  }
+}
