@@ -121,6 +121,8 @@
     header('Location: ./pages/cadCliente.php');
   }
 
+  /*
+
   $_SESSION['name'] = $name;
   $_SESSION['cpf'] = $cpf;
   $_SESSION['address'] = $address;
@@ -133,5 +135,7 @@
   $_SESSION['login'] = $login;
   $_SESSION['password'] = $password;
   $_SESSION['archivo'] = $archivo['name'];
+
+  */
 
 ?>
