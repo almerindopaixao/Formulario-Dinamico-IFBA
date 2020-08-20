@@ -1,5 +1,4 @@
 <?php
-
   include('./utils/ValidadorDeCpf.php');
 
   $name = $_POST["name"];
@@ -11,15 +10,15 @@
   $date = $_POST["date"];
   $sex = $_POST["sex"];
 
-  $movieTheater = isset($_POST["checkMovieTheater"]) ? $_POST["checkMovieTheater"] : '';
+  $movieTheater = isset($_POST["checkMovieTheater"]) ? true : false;
 
-  $music =  isset($_POST["checkMusic"]) ? $_POST["checkMusic"] : '';
+  $music =  isset($_POST["checkMusic"]) ? true : false;
 
-  $info = isset($_POST["checkInfo"]) ? $_POST["checkInfo"] : '';
+  $info = isset($_POST["checkInfo"]) ? true : false;
 
   $login = $_POST["login"];
-  $password = $_POST["password"];
-  $password2 = $_POST["password2"];
+  $password = (string) $_POST["password"];
+  $password2 = (string) $_POST["password2"];
 
   $archivo = $_FILES["photo"];
 
@@ -118,24 +117,20 @@
   $_SESSION['error_archivo'] = checksPhoto($fieldsOK);
 
   if ($fieldsOK) {
-    header('Location: ./pages/cadCliente.php');
+    include('./database/conexao.php');
+
+    $foto_name = $archivo['name'];
+
+    $sql = "INSERT INTO `clientes`(`estado_sigla`, `nome`, `cpf`, `endereco`, `dt_nascimento`, `sexo`, `login`, `senha`, `cinema`, `musica`, `informatica`) VALUES ('$state', '$name', '$cpf', '$address', '$date', '$sex', '$login', '$password2', '$movieTheater', '$music', '$info', '$foto_name')";
+
+    if (mysqli_query($link, $sql)) {
+      header('Location:./pages/cadCliente.php');
+    } else {
+      echo "Error: " . $sql . "<br/>" . mysqli_error($link);
+    }
+
+    mysqli_close($link);
+    
   }
-
-  /*
-
-  $_SESSION['name'] = $name;
-  $_SESSION['cpf'] = $cpf;
-  $_SESSION['address'] = $address;
-  $_SESSION['state'] = $state;
-  $_SESSION['date'] = date('d/m/Y', strtotime($date));
-  $_SESSION['sex'] = $sex;
-  $_SESSION['movieTheater'] = $movieTheater;
-  $_SESSION['music'] = $music;
-  $_SESSION['info'] = $info;
-  $_SESSION['login'] = $login;
-  $_SESSION['password'] = $password;
-  $_SESSION['archivo'] = $archivo['name'];
-
-  */
 
 ?>

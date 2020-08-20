@@ -11,8 +11,4 @@
     die('Falha na conexão com o banco de dados: ' . mysqli_connect_error());
   }
 
-  echo 'Conexão realiza com sucesso';
-
-  mysqli_close($link);
-
 ?>
