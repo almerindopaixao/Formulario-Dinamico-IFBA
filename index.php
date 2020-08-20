@@ -23,6 +23,7 @@
     $_SESSION['error_state'] = '';
     
     if (isset($_POST['enviar'])):
+      include('./utils/validadorDeCpf.php');
       include('controllers/trataPost.php');
     endif;
   ?>

@@ -1,14 +1,13 @@
 <?php
-  include('./utils/ValidadorDeCpf.php');
 
-  $name = $_POST["name"];
-  $cpf = $_POST["cpf"];
-  $address = $_POST["address"];
+  $name = isset($_POST["name"]) ? $_POST["name"] : '';
+  $cpf = isset($_POST["cpf"]) ? $_POST["cpf"] : '';
+  $address =isset($_POST["address"]) ? $_POST["address"] : '';
 
   $state = isset($_POST["state"]) ? $_POST["state"] : '';
 
-  $date = $_POST["date"];
-  $sex = $_POST["sex"];
+  $date = isset($_POST["date"]) ? $_POST["date"] : '';
+  $sex = isset($_POST["sex"]) ? $_POST["sex"] : '';
 
   $movieTheater = isset($_POST["checkMovieTheater"]) ? true : false;
 
@@ -16,11 +15,14 @@
 
   $info = isset($_POST["checkInfo"]) ? true : false;
 
-  $login = $_POST["login"];
-  $password = (string) $_POST["password"];
-  $password2 = (string) $_POST["password2"];
+  $login = isset($_POST["login"]) ? $_POST["login"] : '';
+  $password = isset($_POST["password"]) ? $_POST["password"] : '';
+  $password2 = isset($_POST["password2"]) ? $_POST["password2"] : '';
 
-  $archivo = $_FILES["photo"];
+  $archivo = isset($_FILES["photo"]) ? $_FILES["photo"] : [
+    'error'=> 4545,
+    'size' => 1 
+  ];
 
   $fieldsOK = true;
 
@@ -121,11 +123,15 @@
 
     $foto_name = $archivo['name'];
 
-    $sql = "INSERT INTO `clientes`(`estado_sigla`, `nome`, `cpf`, `endereco`, `dt_nascimento`, `sexo`, `login`, `senha`, `cinema`, `musica`, `informatica`) VALUES ('$state', '$name', '$cpf', '$address', '$date', '$sex', '$login', '$password2', '$movieTheater', '$music', '$info', '$foto_name')";
+    $sql = "INSERT INTO `clientes`(`estado_sigla`, `nome`, `cpf`, `endereco`, `dt_nascimento`, `sexo`, `login`, `senha`, `cinema`, `musica`, `informatica`, `foto`) VALUES ('$state', '$name', '$cpf', '$address', '$date', '$sex', '$login', '$password2', '$movieTheater', '$music', '$info', '$foto_name')";
 
-    if (mysqli_query($link, $sql)) {
+    try {
+
+      mysqli_query($link, $sql);
       header('Location:./pages/cadCliente.php');
-    } else {
+
+    } catch(Exception $ex) {
+      header('Location:./pages/error.php');
       echo "Error: " . $sql . "<br/>" . mysqli_error($link);
     }
 
