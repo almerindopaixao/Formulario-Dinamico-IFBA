@@ -6,6 +6,6 @@
   <title>Página de error</title>
 </head>
 <body>
-  
+
 </body>
 </html>

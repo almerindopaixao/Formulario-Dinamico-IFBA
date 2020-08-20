@@ -125,14 +125,10 @@
 
     $sql = "INSERT INTO `clientes`(`estado_sigla`, `nome`, `cpf`, `endereco`, `dt_nascimento`, `sexo`, `login`, `senha`, `cinema`, `musica`, `informatica`, `foto`) VALUES ('$state', '$name', '$cpf', '$address', '$date', '$sex', '$login', '$password2', '$movieTheater', '$music', '$info', '$foto_name')";
 
-    try {
-
-      mysqli_query($link, $sql);
+    if (mysqli_query($link, $sql)) {
       header('Location:./pages/cadCliente.php');
-
-    } catch(Exception $ex) {
-      header('Location:./pages/error.php');
-      echo "Error: " . $sql . "<br/>" . mysqli_error($link);
+    } else {
+      $_SESSION['error_cpf'] = '<small>Error: Cpf já existente na base de dados</small>';
     }
 
     mysqli_close($link);

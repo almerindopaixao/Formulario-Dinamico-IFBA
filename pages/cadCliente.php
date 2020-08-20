@@ -17,7 +17,7 @@
 
       include('../database/conexao.php');
 
-      $sql = "SELECT * FROM clientes";
+      $sql = "SELECT * FROM clientes ORDER BY id_cliente DESC";
 
       $read = mysqli_query($link, $sql);
 
